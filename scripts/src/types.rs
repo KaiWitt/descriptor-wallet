@@ -100,7 +100,9 @@ impl PubkeyScript {
 }
 
 impl From<WPubkeyHash> for PubkeyScript {
-    fn from(wpkh: WPubkeyHash) -> Self { Script::new_v0_wpkh(&wpkh).into() }
+    fn from(wpkh: WPubkeyHash) -> Self {
+        Script::new_v0_wpkh(&wpkh).into()
+    }
 }
 
 /// A content of `sigScript` from a transaction input
@@ -167,7 +169,9 @@ impl strict_encoding::Strategy for RedeemScript {
 }
 
 impl RedeemScript {
-    pub fn script_hash(&self) -> ScriptHash { self.as_inner().script_hash() }
+    pub fn script_hash(&self) -> ScriptHash {
+        self.as_inner().script_hash()
+    }
     pub fn to_p2sh(&self) -> PubkeyScript {
         self.to_pubkey_script(Category::Hashed)
     }
@@ -201,7 +205,9 @@ impl strict_encoding::Strategy for WitnessScript {
 }
 
 impl WitnessScript {
-    pub fn script_hash(&self) -> WScriptHash { self.as_inner().wscript_hash() }
+    pub fn script_hash(&self) -> WScriptHash {
+        self.as_inner().wscript_hash()
+    }
     pub fn to_p2wsh(&self) -> PubkeyScript {
         self.to_pubkey_script(Category::SegWit)
     }
@@ -434,7 +440,9 @@ impl<'a> TryFrom<Instruction<'a>> for WitnessVersion {
 impl From<WitnessVersion> for opcodes::All {
     /// Converts `WitnessVersion` instance into corresponding Bitcoin script
     /// opcode (`OP_0`..`OP_16`)
-    fn from(ver: WitnessVersion) -> Self { opcodes::All::from(ver as u8) }
+    fn from(ver: WitnessVersion) -> Self {
+        opcodes::All::from(ver as u8)
+    }
 }
 
 #[derive(
@@ -453,11 +461,15 @@ impl Display for WitnessProgram {
 }
 
 impl From<WPubkeyHash> for WitnessProgram {
-    fn from(wpkh: WPubkeyHash) -> Self { WitnessProgram(wpkh.to_vec()) }
+    fn from(wpkh: WPubkeyHash) -> Self {
+        WitnessProgram(wpkh.to_vec())
+    }
 }
 
 impl From<WScriptHash> for WitnessProgram {
-    fn from(wsh: WScriptHash) -> Self { WitnessProgram(wsh.to_vec()) }
+    fn from(wsh: WScriptHash) -> Self {
+        WitnessProgram(wsh.to_vec())
+    }
 }
 
 /// Scripting data for both transaction output and spending transaction input
@@ -493,7 +505,9 @@ impl Display for ScriptSet {
 impl ScriptSet {
     /// Detects whether the structure contains witness data
     #[inline]
-    pub fn has_witness(&self) -> bool { self.witness_script != None }
+    pub fn has_witness(&self) -> bool {
+        self.witness_script != None
+    }
 
     /// Detects whether the structure is either P2SH-P2WPKH or P2SH-P2WSH
     pub fn is_witness_sh(&self) -> bool {

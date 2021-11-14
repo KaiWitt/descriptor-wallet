@@ -46,7 +46,9 @@ where
     }
 
     #[inline]
-    fn count(&self) -> usize { 1 }
+    fn count(&self) -> usize {
+        1
+    }
 
     fn from_index(index: impl Into<u32>) -> Result<Self, bip32::Error>;
 
@@ -54,9 +56,13 @@ where
 
     fn index_mut(&mut self) -> Option<&mut u32>;
 
-    fn checked_inc(self) -> Option<Self> { self.checked_add(1u8) }
+    fn checked_inc(self) -> Option<Self> {
+        self.checked_add(1u8)
+    }
 
-    fn checked_dec(self) -> Option<Self> { self.checked_sub(1u8) }
+    fn checked_dec(self) -> Option<Self> {
+        self.checked_sub(1u8)
+    }
 
     fn checked_inc_assign(&mut self) -> Option<u32> {
         self.checked_add_assign(1u8)
@@ -135,13 +141,19 @@ impl ChildIndex for UnhardenedIndex {
     }
 
     #[inline]
-    fn index(&self) -> Option<u32> { Some(self.0) }
+    fn index(&self) -> Option<u32> {
+        Some(self.0)
+    }
 
     #[inline]
-    fn index_mut(&mut self) -> Option<&mut u32> { Some(&mut self.0) }
+    fn index_mut(&mut self) -> Option<&mut u32> {
+        Some(&mut self.0)
+    }
 
     #[inline]
-    fn is_hardened(&self) -> bool { false }
+    fn is_hardened(&self) -> bool {
+        false
+    }
 }
 
 impl FromStr for UnhardenedIndex {
@@ -156,7 +168,9 @@ impl FromStr for UnhardenedIndex {
 }
 
 impl From<UnhardenedIndex> for u32 {
-    fn from(index: UnhardenedIndex) -> Self { index.0 }
+    fn from(index: UnhardenedIndex) -> Self {
+        index.0
+    }
 }
 
 impl TryFrom<ChildNumber> for UnhardenedIndex {
@@ -219,13 +233,19 @@ impl ChildIndex for HardenedIndex {
     }
 
     #[inline]
-    fn index(&self) -> Option<u32> { Some(self.0) }
+    fn index(&self) -> Option<u32> {
+        Some(self.0)
+    }
 
     #[inline]
-    fn index_mut(&mut self) -> Option<&mut u32> { Some(&mut self.0) }
+    fn index_mut(&mut self) -> Option<&mut u32> {
+        Some(&mut self.0)
+    }
 
     #[inline]
-    fn is_hardened(&self) -> bool { true }
+    fn is_hardened(&self) -> bool {
+        true
+    }
 }
 
 impl FromStr for HardenedIndex {
@@ -242,7 +262,9 @@ impl FromStr for HardenedIndex {
 }
 
 impl From<HardenedIndex> for u32 {
-    fn from(index: HardenedIndex) -> Self { index.0 }
+    fn from(index: HardenedIndex) -> Self {
+        index.0
+    }
 }
 
 impl TryFrom<ChildNumber> for HardenedIndex {
@@ -435,7 +457,9 @@ impl From<ChildNumber> for BranchStep {
 }
 
 impl From<BranchStep> for ChildNumber {
-    fn from(value: BranchStep) -> Self { ChildNumber::from(&value) }
+    fn from(value: BranchStep) -> Self {
+        ChildNumber::from(&value)
+    }
 }
 
 impl From<&BranchStep> for ChildNumber {
@@ -544,7 +568,9 @@ impl ChildIndex for TerminalStep {
     }
 
     #[inline]
-    fn is_hardened(&self) -> bool { false }
+    fn is_hardened(&self) -> bool {
+        false
+    }
 }
 
 impl FromStr for TerminalStep {

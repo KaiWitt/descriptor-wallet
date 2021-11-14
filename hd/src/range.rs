@@ -63,7 +63,9 @@ impl StrictDecode for DerivationRangeVec {
 }
 
 impl From<DerivationRange> for DerivationRangeVec {
-    fn from(range: DerivationRange) -> Self { Self(vec![range]) }
+    fn from(range: DerivationRange) -> Self {
+        Self(vec![range])
+    }
 }
 
 impl TryFrom<Vec<DerivationRange>> for DerivationRangeVec {
@@ -150,9 +152,13 @@ impl DerivationRange {
         inner.end() - inner.start() + 1
     }
 
-    pub fn first_index(&self) -> u32 { *self.as_inner().start() }
+    pub fn first_index(&self) -> u32 {
+        *self.as_inner().start()
+    }
 
-    pub fn last_index(&self) -> u32 { *self.as_inner().end() }
+    pub fn last_index(&self) -> u32 {
+        *self.as_inner().end()
+    }
 }
 
 impl Display for DerivationRange {

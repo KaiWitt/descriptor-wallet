@@ -35,11 +35,15 @@ pub trait DerivationPathMaster {
 
 impl DerivationPathMaster for DerivationPath {
     /// Returns derivation path for a master key (i.e. empty derivation path)
-    fn master() -> DerivationPath { vec![].into() }
+    fn master() -> DerivationPath {
+        vec![].into()
+    }
 
     /// Returns whether derivation path represents master key (i.e. it's length
     /// is empty). True for `m` path.
-    fn is_master(&self) -> bool { self.into_iter().len() == 0 }
+    fn is_master(&self) -> bool {
+        self.into_iter().len() == 0
+    }
 }
 
 pub trait HardenedNormalSplit {

@@ -376,7 +376,9 @@ impl AddressFormat {
 }
 
 impl From<Address> for AddressFormat {
-    fn from(address: Address) -> Self { address.payload.into() }
+    fn from(address: Address) -> Self {
+        address.payload.into()
+    }
 }
 
 impl From<Payload> for AddressFormat {
@@ -451,7 +453,9 @@ impl FromStr for AddressNetwork {
 }
 
 impl From<Address> for AddressNetwork {
-    fn from(address: Address) -> Self { address.network.into() }
+    fn from(address: Address) -> Self {
+        address.network.into()
+    }
 }
 
 impl From<bitcoin::Network> for AddressNetwork {

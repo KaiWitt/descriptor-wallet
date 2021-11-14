@@ -73,7 +73,9 @@ pub enum error_t {
 }
 
 impl Default for error_t {
-    fn default() -> Self { error_t::success }
+    fn default() -> Self {
+        error_t::success
+    }
 }
 
 impl From<bip32::Error> for error_t {
@@ -127,7 +129,9 @@ impl string_result_t {
         }
     }
 
-    pub fn is_success(&self) -> bool { self.code == error_t::success }
+    pub fn is_success(&self) -> bool {
+        self.code == error_t::success
+    }
 }
 
 impl<E> FromResidual<Result<Infallible, E>> for string_result_t
@@ -142,7 +146,9 @@ where
 
 impl FromResidual<error_t> for string_result_t {
     #[inline]
-    fn from_residual(residual: error_t) -> Self { Self::from(residual) }
+    fn from_residual(residual: error_t) -> Self {
+        Self::from(residual)
+    }
 }
 
 impl Try for string_result_t {
